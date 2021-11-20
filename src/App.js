@@ -7,13 +7,16 @@ class App extends Component {
     super()
     this.state = {
       clickTimes: 0,
-      templateString: "Hi!Paddy!heyhey!!"
+      templateStrings: []
     }
   }
 
   updateClickTimes(){
     this.setState(prevState => {
-      return {clickTimes: prevState.clickTimes+1}
+      return {
+        clickTimes: prevState.clickTimes+1,
+        templateStrings: prevState.templateStrings.concat(["Hi!Paddy!heyhey!!"])
+      }
     });
   }
 
@@ -23,9 +26,6 @@ class App extends Component {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {this.state.templateString}
-        </p>
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -39,6 +39,11 @@ class App extends Component {
       <div>
         <button type="button" id="theButton" onClick={() => this.updateClickTimes()}>Click me!</button>
         <p>{this.state.clickTimes}</p>
+        {
+          this.state.templateStrings.map( x =>(
+            <p>{x}</p>
+          ))
+        }
       </div>
       <div id="TheButtonResult">
 
